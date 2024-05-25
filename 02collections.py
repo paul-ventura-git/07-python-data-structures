@@ -1,6 +1,7 @@
 import collections
 from collections import defaultdict
 from collections import ChainMap
+from types import MappingProxyType
 
 #Ordered dict
 d = collections.OrderedDict(one=1, two=2, three=3)
@@ -31,3 +32,13 @@ chain = ChainMap(dict1, dict2)
 print(chain)
 print(chain['one'])
 print(chain['three'])
+
+#Mapping Proxy Type
+writable = {"one": 1, "two": 2}
+read_only = MappingProxyType(writable)
+
+print(read_only["one"])
+# read_only["one"] = 23 # error
+
+writable['one'] = 42
+print(read_only)
